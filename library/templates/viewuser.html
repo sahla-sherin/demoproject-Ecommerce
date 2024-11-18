@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>View User Details Here!!</h1>
+<!--{{user}}-->
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>PLACE</th>
+        <th>GENDER</th>
+
+    </tr>
+
+
+{% for i in user %}
+
+    <tr>
+        <td>{{i.name}}</td>
+        <td>{{i.age}}</td>
+        <td>{{i.place}}</td>
+        <td>{{i.gender}}</td>
+
+    </tr>
+
+{% endfor %}
+</table><br><br>
+{% endblock %}

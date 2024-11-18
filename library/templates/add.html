@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Add Your Books Details Here!!</h1>
+<form method="POST" enctype="multipart/form-data" class="text-success container">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label fw-bold" >Title</label>
+        <input type="text" class="form-control" name="t" placeholder="title">
+    </div>
+     <div class="mb-3">
+        <label class="form-label fw-bold" >Author</label>
+        <input type="text" class="form-control" name="a" placeholder="author">
+    </div>
+     <div class="mb-3">
+        <label class="form-label fw-bold" >Price</label>
+        <input type="number" class="form-control" name="pr" placeholder="price">
+    </div>
+     <div class="mb-3">
+        <label class="form-label fw-bold" >Pages</label>
+        <input type="number" class="form-control" name="pg" placeholder="pages">
+    </div>
+     <div class="mb-3">
+        <label class="form-label fw-bold" >Language</label>
+        <input type="text" class="form-control" name="l" placeholder="language">
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold" >Cover</label>
+        <input type="file" class="form-control" name="c" placeholder="coverpage">
+    </div>
+    <div class="mb-3">
+        <label class="form-label fw-bold" >Pdf</label>
+        <input type="file" class="form-control" name="pdf" placeholder="pdfile">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-success btn-outline-light ">Add Details</button>
+    </div>
+
+</form>
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid mt-5">
+<h1 class="text-center">Billing Details!</h1>
+<form method="POST" class="text-success container">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label" ><b>Address</b></label>
+        <input type="text" class="form-control" name="a" placeholder="address">
+    </div>
+     <div class="mb-3">
+        <label class="form-label" ><b>Phone</b></label>
+        <input type="number" class="form-control" name="ph" placeholder="phone">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" ><b>Pin No.</b></label>
+        <input type="number" class="form-control" name="pin" placeholder="pin">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Submit</button>
+    </div>
+
+</form>
+    </div>
+{% endblock %}

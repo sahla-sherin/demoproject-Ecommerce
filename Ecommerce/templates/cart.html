@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="text-center">Your Cart!!</h1>
+
+<div class="container">
+<div class="row">
+<div class="table-responsive-lg w-50">
+<table class="table table-bordered border-success text-center m-5 p-5">
+ <thead>
+      <tr>
+      <th colspan="7">Cart Items</th>
+      </tr>
+    </thead>
+    {% for i in cart %}
+    <tbody>
+      <tr>
+        <td><img src="{{i.product.image.url}}" height="100px" width="100%"></td>
+          <td>{{i.product.name}}</td>
+          <td>Quantity:{{i.quantity}}<br>
+              Unit price:{{i.product.price}}</td>
+          <td>Sub total:{{i.subtotal}}</td>
+
+         <td style="position: relative; padding: 8px;">
+    <div style="display: flex; gap: 2px;">
+        {% if i.product.stock > 0 %}
+            <a href="{% url 'cart:addtocart' i.product.id %}" ><i class="fas fa-circle-plus"></i></a>
+        {% endif %}
+        <a href="{% url 'cart:cartremove' i.product.id %}"><i class="fas fa-circle-minus"></i></a>
+        <a href="{% url 'cart:cartdelete' i.product.id %}"><i class="fas fa-trash"></i></a>
+    </div>
+</td>
+      </tr>
+    </tbody>
+    {% endfor %}
+</table>
+</div>
+<div class="table-responsive-lg w-25">
+    <table class="table table-bordered border-success text-center m-5 p-5">
+        <thead>
+        <tr>
+        <th colspan="2" class="fs-3">Checkout</th>
+        </tr>
+        <tr>
+            <th colspan="2" class="fs-5">Total Price:{{total}}</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+ <div class="modal-footer mt-5 d-flex justify-content-center">
+              <a  href="{% url 'cart:order' %}" class="btn btn-red hvr-sweep-to-right dark-sweep">Order Now</a>
+              <a href="{% url 'shop:categories' %}" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep m-3">Continue Shopping</a>
+            </div>
+</div>
+    </div>
+{% endblock %}

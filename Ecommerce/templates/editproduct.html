@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<center>
+<div class="container-fluid mt-3">
+<h3 class="text-danger m-2">Edit Products Here!!</h3>
+
+<form method="POST" enctype="multipart/form-data" class="text-success fs-5 container">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label class="form-label" ><b>Product Name:</b></label>
+        <input type="text" class="form-control" name="prd" value="{{pro.name}}" placeholder="enter product name">
+    </div>
+
+<div class="mb-3" >
+    <label class="form-label" ><b>Description:</b></label>
+<input type="text" class="form-control" name="desc" value="{{pro.desc}}" placeholder="enter description here">
+</div>
+
+     <div class="mb-3">
+        <label class="form-label" ><b>Image:</b></label>
+         <img src="{{pro.image.url}}" height="100px" width="10%">
+        <input type="file" class="form-control" name="img" placeholder="image">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" ><b>Price:</b></label>
+        <input type="number" class="form-control" name="pr" value="{{pro.price}}" placeholder="price">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" ><b>Stock:</b></label>
+        <input type="number" class="form-control" name="st" value="{{pro.stock}}" placeholder="stock">
+    </div>
+
+    <div class="mb-3">
+        <label for="category"><b>Category:</b></label>
+    <select id="category" name="c">
+
+      {% for category in links %}
+ <option value="{{pro.category.name}}"><a href="{% url 'shop:products' pro.category.id %}" class="dropdown-item">{{ category.name }}</a></option>
+       {% endfor %}
+    </select>
+    </div>
+
+    <div>
+         <button type="submit"  class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Edit</button>
+        <a href="{% url 'shop:delete' pro.id %}" class="btn btn-outline-gray hvr-sweep-to-right light-sweep">Delete</a>
+
+    </div>
+
+</form>
+    </div>
+</center>
+{% endblock %}

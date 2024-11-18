@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="card mb-5 mx-auto mt-5 " style="max-width:700px;">
+  <div class="row g-0 bg-muted">
+    <div class="col-md-4 p-3">
+      <img src="{{product.image.url}}" class="img-thumbnail rounded-start" height="500px" width="500%">
+    </div>
+    <div class="col-md-8 lh-lg ps-3 text-dark">
+      <div class="card-body mt-1 ">
+        <h3 class="card-title text-dark"> {{product.name}}</h3>
+        <p class="card-text fs-6"> {{product.price}}</p>
+        <p class="card-text fs-6">{{product.desc}}</p>
+        <p class="card-text fs-6 text-muted">only {{product.stock}} left</p>
+    {% if user.is_superuser == True %}
+        {% if product.stock > 0 %}
+        <h5 class="text-success">In Stock</h5>
+        <a href="{% url 'shop:add_stock' product.id %}" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Add Stock</a>
+        <a href="{% url 'shop:edit' product.id %}" class="btn btn-outline-gray hvr-sweep-to-right light-sweep mx-3">Edit</a>
+        {% else %}
+         <h5 class="text-danger">Out of Stock</h5>
+        <a href="{% url 'shop:add_stock' product.id %}" class="btn btn-outline-gray hvr-sweep-to-right dark-sweep">Add Stock</a>
+          <a href="{% url 'shop:edit' product.id %}" class="btn btn-outline-gray hvr-sweep-to-right light-sweep mx-3">Edit</a>
+
+          {% endif %}
+
+        {% else %}
+        {% if product.stock > 0 %}
+        <a href="{% url 'cart:addtocart' product.id %}" class="btn btn-outline-gray hvr-sweep-to-right light-sweep">Add to Cart</a>
+
+        {% else %}
+<h5 class="text-danger">Out of Stock</h5>
+
+        {% endif %}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

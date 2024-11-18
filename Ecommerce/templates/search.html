@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<h1>Search Results</h1>
+
+    <!-- Display the query -->
+    <p>You searched for<strong>{{ query }}</strong></p>
+<div class="row">
+{% for i in pro %}
+
+   <div class="col-sm-4 py-3">
+        <div class="card mx-auto" style="width: 18rem;">
+  <img src="{{i.image.url}}" class="card-img-center" style="height: 300px; width: 286px; object-fit: cover;">
+  <div class="card-body text-dark">
+    <h5 class="card-title p-3" style="font-family:'Lato', sans-serif; font-weight: 1000; font-size: 1.25rem;word-spacing: 3px;letter-spacing:1px;">{{i.name}}</h5>
+    <p class="card-text" style="font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 1rem;">{{i.price}}</p>
+    <a href="{% url 'shop:details' i.id %}" class="btn btn-secondary px-5 mb-2 fs-5">Details</a>
+  </div>
+</div>
+   </div>
+        {% empty %}
+        <!-- Message if no products are found -->
+        <p>No products found</p>
+    </div>
+
+{% endfor%}
+
+
+{% endblock %}
